@@ -25,7 +25,7 @@ accounts = [
          'Misijų': 0
      },
      'agent': "X11",
-     'imin': 1,
+     'imin': 6,
      'imax': 6,
      'target': {
          'i': "naujoku_zeme",
@@ -46,19 +46,19 @@ accounts = [
          'Misijų': 0
      },
      'agent': "SG9",
-     'imin': 1,
+     'imin': 6,
      'imax': 6,
      'target': {
          'i': "naujoku_zeme",
-         'j': "miesto_centras",
-         'k': "pragaro_tvirtove",
+         'j': "paslaptingasis_tarpeklis",
+         'k': "klampi_pelke",
          'cooldown': 126
      },
      'mission': {
          'i': "naujoku_zeme",
-         'j': "pagrindine_aikste",
-         'k': "valstieciu_fermos",
-         'taskGiver': "zehiras"
+         'j': "pavojingas_krastas",
+         'k': "uzkeiktas_miskas",
+         'taskGiver': "osiras"
      }},
     {'name': 'crazy',
      'resources': {
@@ -67,19 +67,19 @@ accounts = [
          'Misijų': 0
      },
      'agent': "macOS",
-     'imin': 1,
+     'imin': 6,
      'imax': 6,
      'target': {
          'i': "neistirtas_krastas",
-         'j': "mirties_slenis",
-         'k': "stebuklinga_kopa",
+         'j': "pasmerktuju_zeme",
+         'k': "karzigiu_stovyklaviete",
          'cooldown': 126
      },
      'mission': {
          'i': "neistirtas_krastas",
-         'j': "miestas_atsiskyrelis",
-         'k': "blogio_karalyste",
-         'taskGiver': "marbas"
+         'j': "pasmerktuju_zeme",
+         'k': "vulkano_kalnai",
+         'taskGiver': "nymusas"
      }},
     {'name': 'fanatikas',
      'resources': {
@@ -88,19 +88,19 @@ accounts = [
          'Misijų': 0
      },
      'agent': "iPhone",
-     'imin': 1,
-     'imax': 6,
+     'imin': 5,
+     'imax': 5,
      'target': {
          'i': "neistirtas_krastas",
-         'j': "misko_giluma",
-         'k': "vaiduokliu_dvaras",
+         'j': "miestas_atsiskyrelis",
+         'k': "didysis_miesto_medis",
          'cooldown': 126
      },
      'mission': {
          'i': "neistirtas_krastas",
-         'j': "misko_giluma",
-         'k': "pavojinga_giria",
-         'taskGiver': "gilranas"
+         'j': "mirties_slenis",
+         'k': "stebuklinga_kopa",
+         'taskGiver': "nachiras"
      }}
 ]
 
@@ -109,7 +109,6 @@ def fight(character: str, gathered_resources, agent: str, imin: int, imax: int, 
           mi: str, mj: str, mk: str, mm: str):
     headers = {"User-Agent": agent}
     m = random.randint(imin, imax)
-    m = 6
     location_url = f'{baseUrl}/index.php?action=map&id={character}&i={i}&j={j}&k={k}'
     battle_url = f'{baseUrl}/index.php?action=nbattle&id={character}&i={i}&j={j}&k={k}'
     event_url = f'{baseUrl}/index.php?action=event&id={character}&i={i}&j={j}&k={k}&m={m}'
@@ -219,5 +218,5 @@ def single_auto(acc):
 for account in accounts:
     Thread(target=single_auto, args=[account]).start()
 
-# Thread(target=single_auto, args=[accounts[2]]).start()
-# Thread(target=single_auto, args=[accounts[3]]).start()
+# Thread(target=single_auto, args=[accounts[1]]).start()
+# Thread(target=single_auto, args=[accounts[0]]).start()
