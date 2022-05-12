@@ -25,19 +25,19 @@ accounts = [
          'Misijų': 0
      },
      'agent': "X11",
-     'imin': 6,
-     'imax': 6,
+     'imin': 5,
+     'imax': 5,
      'target': {
-         'i': "naujoku_zeme",
-         'j': "pavojingas_krastas",
-         'k': "didieji_kalnai",
-         'cooldown': 126
+         'i': "neistirtas_krastas",
+         'j': "misko_giluma",
+         'k': "dziungliu_gluduma",
+         'cooldown': 0
      },
      'mission': {
-         'i': "naujoku_zeme",
-         'j': "paslaptingasis_tarpeklis",
-         'k': "tarpeklio_pozemis",
-         'taskGiver': "lethosas"
+         'i': "neistirtas_krastas",
+         'j': "pasmerktuju_zeme",
+         'k': "paslaptingoji_dykuma",
+         'taskGiver': "nura"
      }},
     {'name': 'paparacas',
      'resources': {
@@ -49,16 +49,37 @@ accounts = [
      'imin': 6,
      'imax': 6,
      'target': {
-         'i': "naujoku_zeme",
-         'j': "paslaptingasis_tarpeklis",
-         'k': "klampi_pelke",
-         'cooldown': 126
+         'i': "neistirtas_krastas",
+         'j': "mirties_slenis",
+         'k': "mirties_tunelis",
+         'cooldown': 0
      },
      'mission': {
-         'i': "naujoku_zeme",
-         'j': "pavojingas_krastas",
-         'k': "uzkeiktas_miskas",
-         'taskGiver': "osiras"
+         'i': "neistirtas_krastas",
+         'j': "miestas_atsiskyrelis",
+         'k': "didysis_miesto_medis",
+         'taskGiver': "alarikas"
+     }},
+    {'name': 'fanatikas',
+     'resources': {
+         'XP': 0,
+         'Kovų': 0,
+         'Misijų': 0
+     },
+     'agent': "iPhone",
+     'imin': 6,
+     'imax': 6,
+     'target': {
+         'i': "tamsybiu_salis",
+         'j': "skerdyniu_krastai",
+         'k': "mirties_ola",
+         'cooldown': 0
+     },
+     'mission': {
+         'i': "tamsybiu_salis",
+         'j': "skerdyniu_krastai",
+         'k': "prazutingoji_oaze",
+         'taskGiver': "yrbete"
      }},
     {'name': 'crazy',
      'resources': {
@@ -70,40 +91,31 @@ accounts = [
      'imin': 6,
      'imax': 6,
      'target': {
-         'i': "neistirtas_krastas",
-         'j': "pasmerktuju_zeme",
-         'k': "karzigiu_stovyklaviete",
-         'cooldown': 126
+         'i': "siaubunu_zeme",
+         'j': "pavoju_krastas",
+         'k': "numireliu_miestas",
+         'cooldown': 0
      },
      'mission': {
-         'i': "neistirtas_krastas",
-         'j': "pasmerktuju_zeme",
-         'k': "vulkano_kalnai",
-         'taskGiver': "nymusas"
-     }},
-    {'name': 'fanatikas',
-     'resources': {
-         'XP': 0,
-         'Kovų': 0,
-         'Misijų': 0
-     },
-     'agent': "iPhone",
-     'imin': 5,
-     'imax': 5,
-     'target': {
-         'i': "neistirtas_krastas",
-         'j': "miestas_atsiskyrelis",
-         'k': "didysis_miesto_medis",
-         'cooldown': 126
-     },
-     'mission': {
-         'i': "neistirtas_krastas",
-         'j': "mirties_slenis",
-         'k': "stebuklinga_kopa",
-         'taskGiver': "nachiras"
+         'i': "siaubunu_zeme",
+         'j': "pavoju_krastas",
+         'k': "drakonu_buveine",
+         'taskGiver': "vyngalas"
      }}
 ]
 
+# 'target': {
+#     'i': "siaubunu_zeme",
+#     'j': "pavoju_krastas",
+#     'k': "numireliu_miestas",
+#     'cooldown': 0
+# },
+# 'mission': {
+#     'i': "siaubunu_zeme",
+#     'j': "pavoju_krastas",
+#     'k': "drakonu_buveine",
+#     'taskGiver': "vyngalas"
+# }}
 
 def fight(character: str, gathered_resources, agent: str, imin: int, imax: int, i: str, j: str, k: str, cooldown: float,
           mi: str, mj: str, mk: str, mm: str):
@@ -114,6 +126,7 @@ def fight(character: str, gathered_resources, agent: str, imin: int, imax: int, 
     event_url = f'{baseUrl}/index.php?action=event&id={character}&i={i}&j={j}&k={k}&m={m}'
     mission_url = f'{baseUrl}/index.php?action=object&id={character}&i={mi}&j={mj}&k={mk}&m={mm}'
     fakeLog_url = f'{baseUrl}/index.php?id={character}'
+    barakai_pickup_url = f'{baseUrl}/index.php?action=barakai&n=take&id={character}&server='
     requests.get(location_url, headers=headers)
     event = requests.get(event_url, headers=headers).text
     npc = re.findall('event\=(.*?)\"', event)
@@ -131,6 +144,10 @@ def fight(character: str, gathered_resources, agent: str, imin: int, imax: int, 
         while True:
             # Kovos eiga
             if len(battle) > 0:
+                # Paimam 1 skeleta ant mesos
+                requests.post(barakai_pickup_url, data={'unit': 'skeletonas', 'quan': 1}, headers=headers)
+                requests.post(barakai_pickup_url, data={'unit': 'skeletonu_lankininkas', 'quan': 1}, headers=headers)
+                requests.post(barakai_pickup_url, data={'unit': 'inirses_valstietis', 'quan': 1}, headers=headers)
                 battle_details = re.findall('\d+', battle[0])
                 event = battle_details[0]
                 timeStamp = battle_details[1]
@@ -140,6 +157,10 @@ def fight(character: str, gathered_resources, agent: str, imin: int, imax: int, 
                 battle_completed = re.findall('Gavote patirties: (.*?)<\/b>', event_response)
             # Kovos pabaiga
             if len(battle_completed) == 1:
+                # Paimam 1 skeleta ant mesos
+                requests.post(barakai_pickup_url, data={'unit': 'skeletonas', 'quan': 1}, headers=headers)
+                requests.post(barakai_pickup_url, data={'unit': 'skeletonu_lankininkas', 'quan': 1}, headers=headers)
+                requests.post(barakai_pickup_url, data={'unit': 'valstietis', 'quan': 1}, headers=headers)
                 gathered_resources['XP'] += float(battle_completed[0])
                 gathered_resources['Kovų'] += 1
                 battle_resource = re.findall('Gavote (.*?)<\/b>', event_response)
@@ -179,12 +200,13 @@ def fight(character: str, gathered_resources, agent: str, imin: int, imax: int, 
                     current = float(
                         re.findall('<small>Esate nu&#382;ud&#281;: <b>(.*?)<\/b>', missionStatusResponse)[0])
                     print(f'Misijos atlikta: {(current / target) * 100:.2f} %')
-                time.sleep(cooldown - 1)
+                time.sleep(cooldown)
                 break
             # Jei negali kovoti
             if len(on_cooldown) == 1:
                 fightCooldown = float(on_cooldown[0]) + 0.1
-                print(f'Herojus pavargęs {fightCooldown} s')
+                requests.get(fakeLog_url, headers=headers)
+                #print(f'Herojus pavargęs {fightCooldown} s')
                 time.sleep(fightCooldown)
                 break
     # Zemelapio resursai
@@ -215,8 +237,13 @@ def single_auto(acc):
               acc['mission']['taskGiver'])
 
 
-for account in accounts:
-    Thread(target=single_auto, args=[account]).start()
+def all_accounts():
+    for account in accounts:
+        Thread(target=single_auto, args=[account]).start()
 
-# Thread(target=single_auto, args=[accounts[1]]).start()
+all_accounts()
+
 # Thread(target=single_auto, args=[accounts[0]]).start()
+# Thread(target=single_auto, args=[accounts[1]]).start()
+# Thread(target=single_auto, args=[accounts[2]]).start()
+# Thread(target=single_auto, args=[accounts[3]]).start()
