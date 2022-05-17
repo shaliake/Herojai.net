@@ -25,19 +25,19 @@ accounts = [
          'Misijų': 0
      },
      'agent': "X11",
-     'imin': 5,
-     'imax': 5,
+     'imin': 6,
+     'imax': 6,
      'target': {
          'i': "neistirtas_krastas",
-         'j': "misko_giluma",
-         'k': "dziungliu_gluduma",
+         'j': "miestas_atsiskyrelis",
+         'k': "blogio_karalyste",
          'cooldown': 0
      },
      'mission': {
          'i': "neistirtas_krastas",
-         'j': "pasmerktuju_zeme",
-         'k': "paslaptingoji_dykuma",
-         'taskGiver': "nura"
+         'j': "mirties_slenis",
+         'k': "numireliu_valdos",
+         'taskGiver': "orsonas"
      }},
     {'name': 'paparacas',
      'resources': {
@@ -49,16 +49,16 @@ accounts = [
      'imin': 6,
      'imax': 6,
      'target': {
-         'i': "neistirtas_krastas",
-         'j': "mirties_slenis",
-         'k': "mirties_tunelis",
+         'i': "tamsybiu_salis",
+         'j': "ismires_miestas",
+         'k': "miesto_sodai",
          'cooldown': 0
      },
      'mission': {
-         'i': "neistirtas_krastas",
-         'j': "miestas_atsiskyrelis",
-         'k': "didysis_miesto_medis",
-         'taskGiver': "alarikas"
+         'i': "tamsybiu_salis",
+         'j': "ismires_miestas",
+         'k': "miesto_pakrastys",
+         'taskGiver': "nebirosas"
      }},
     {'name': 'fanatikas',
      'resources': {
@@ -71,15 +71,15 @@ accounts = [
      'imax': 6,
      'target': {
          'i': "tamsybiu_salis",
-         'j': "skerdyniu_krastai",
-         'k': "mirties_ola",
+         'j': "legendiniu_kovotju_slenis",
+         'k': "slenio_sodai",
          'cooldown': 0
      },
      'mission': {
          'i': "tamsybiu_salis",
-         'j': "skerdyniu_krastai",
-         'k': "prazutingoji_oaze",
-         'taskGiver': "yrbete"
+         'j': "legendiniu_kovotju_slenis",
+         'k': "riteriu_rumai",
+         'taskGiver': "laszlas"
      }},
     {'name': 'crazy',
      'resources': {
@@ -92,30 +92,18 @@ accounts = [
      'imax': 6,
      'target': {
          'i': "siaubunu_zeme",
-         'j': "pavoju_krastas",
-         'k': "numireliu_miestas",
+         'j': "heroju_karalyste",
+         'k': "kalnuotas_slenis",
          'cooldown': 0
      },
      'mission': {
          'i': "siaubunu_zeme",
          'j': "pavoju_krastas",
-         'k': "drakonu_buveine",
-         'taskGiver': "vyngalas"
+         'k': "dangaus_miestas",
+         'taskGiver': "narksesas"
      }}
 ]
 
-# 'target': {
-#     'i': "siaubunu_zeme",
-#     'j': "pavoju_krastas",
-#     'k': "numireliu_miestas",
-#     'cooldown': 0
-# },
-# 'mission': {
-#     'i': "siaubunu_zeme",
-#     'j': "pavoju_krastas",
-#     'k': "drakonu_buveine",
-#     'taskGiver': "vyngalas"
-# }}
 
 def fight(character: str, gathered_resources, agent: str, imin: int, imax: int, i: str, j: str, k: str, cooldown: float,
           mi: str, mj: str, mk: str, mm: str):
