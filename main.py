@@ -28,16 +28,16 @@ accounts = [
      'imin': 6,
      'imax': 6,
      'target': {
-         'i': "neistirtas_krastas",
-         'j': "miestas_atsiskyrelis",
-         'k': "blogio_karalyste",
+         'i': "tamsybiu_salis",
+         'j': "skerdyniu_krastai",
+         'k': "prazutingoji_oaze",
          'cooldown': 0
      },
      'mission': {
-         'i': "neistirtas_krastas",
-         'j': "mirties_slenis",
-         'k': "numireliu_valdos",
-         'taskGiver': "orsonas"
+         'i': "tamsybiu_salis",
+         'j': "skerdyniu_krastai",
+         'k': "baznycia",
+         'taskGiver': "nikolajus"
      }},
     {'name': 'paparacas',
      'resources': {
@@ -229,9 +229,9 @@ def all_accounts():
     for account in accounts:
         Thread(target=single_auto, args=[account]).start()
 
-all_accounts()
+# all_accounts()
 
-# Thread(target=single_auto, args=[accounts[0]]).start()
-# Thread(target=single_auto, args=[accounts[1]]).start()
-# Thread(target=single_auto, args=[accounts[2]]).start()
+Thread(target=single_auto, args=[accounts[0]]).start()
+Thread(target=single_auto, args=[accounts[1]]).start()
+Thread(target=single_auto, args=[accounts[2]]).start()
 # Thread(target=single_auto, args=[accounts[3]]).start()
