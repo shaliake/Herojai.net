@@ -29,15 +29,15 @@ accounts = [
      'imax': 6,
      'target': {
          'i': "tamsybiu_salis",
-         'j': "skerdyniu_krastai",
-         'k': "prazutingoji_oaze",
+         'j': "ismires_miestas",
+         'k': "miesto_pakrastys",
          'cooldown': 0
      },
      'mission': {
          'i': "tamsybiu_salis",
-         'j': "skerdyniu_krastai",
-         'k': "baznycia",
-         'taskGiver': "nikolajus"
+         'j': "ismires_miestas",
+         'k': "miesto_sodai",
+         'taskGiver': "ylthana"
      }},
     {'name': 'paparacas',
      'resources': {
@@ -72,14 +72,14 @@ accounts = [
      'target': {
          'i': "tamsybiu_salis",
          'j': "legendiniu_kovotju_slenis",
-         'k': "slenio_sodai",
+         'k': "riteriu_rumai",
          'cooldown': 0
      },
      'mission': {
          'i': "tamsybiu_salis",
          'j': "legendiniu_kovotju_slenis",
-         'k': "riteriu_rumai",
-         'taskGiver': "laszlas"
+         'k': "valdovu_slenis",
+         'taskGiver': "brandas"
      }},
     {'name': 'crazy',
      'resources': {
@@ -92,15 +92,15 @@ accounts = [
      'imax': 6,
      'target': {
          'i': "siaubunu_zeme",
-         'j': "heroju_karalyste",
-         'k': "kalnuotas_slenis",
+         'j': "pavoju_krastas",
+         'k': "drakonu_buveine",
          'cooldown': 0
      },
      'mission': {
          'i': "siaubunu_zeme",
          'j': "pavoju_krastas",
-         'k': "dangaus_miestas",
-         'taskGiver': "narksesas"
+         'k': "numireliu_miestas",
+         'taskGiver': "kasparas"
      }}
 ]
 
@@ -229,9 +229,9 @@ def all_accounts():
     for account in accounts:
         Thread(target=single_auto, args=[account]).start()
 
-# all_accounts()
-
-Thread(target=single_auto, args=[accounts[0]]).start()
-Thread(target=single_auto, args=[accounts[1]]).start()
-Thread(target=single_auto, args=[accounts[2]]).start()
+all_accounts()
+#
+# Thread(target=single_auto, args=[accounts[0]]).start()
+# Thread(target=single_auto, args=[accounts[1]]).start()
+# Thread(target=single_auto, args=[accounts[2]]).start()
 # Thread(target=single_auto, args=[accounts[3]]).start()
